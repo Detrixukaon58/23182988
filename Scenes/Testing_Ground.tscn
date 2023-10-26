@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://8axkjdri2xdg"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ntdjx"]
+
+[sub_resource type="HeightMapShape3D" id="HeightMapShape3D_0h46a"]
+
+[node name="SceneRoot" type="Node3D"]
+
+[node name="PlaneBody" type="StaticBody3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0)
+
+[node name="PlaneMesh" type="MeshInstance3D" parent="PlaneBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ntdjx")
+skeleton = NodePath("../..")
+
+[node name="PlaneShape" type="CollisionShape3D" parent="PlaneBody"]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, 0)
+shape = SubResource("HeightMapShape3D_0h46a")
