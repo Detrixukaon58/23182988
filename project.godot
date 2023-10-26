@@ -10,8 +10,13 @@ config_version=5
 
 [application]
 
+config/name="23182988"
 run/main_scene="res://Scenes/Testing_Ground.tscn"
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.1", "C#")
+
+[dotnet]
+
+project/assembly_name="23182988"
 
 [input]
 
