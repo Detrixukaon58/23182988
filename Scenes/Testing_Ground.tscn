@@ -1,4 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://8axkjdri2xdg"]
+[gd_scene load_steps=5 format=3 uid="uid://8axkjdri2xdg"]
+
+[ext_resource type="PackedScene" uid="uid://dtbu8sjyu645u" path="res://Prefabs/brick.res" id="1_lg20k"]
+[ext_resource type="PackedScene" uid="uid://dpbghxb3p4j3n" path="res://Prefabs/player.res" id="2_n7ilk"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ntdjx"]
 
@@ -17,3 +20,11 @@ skeleton = NodePath("../..")
 [node name="PlaneShape" type="CollisionShape3D" parent="PlaneBody"]
 transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, 0)
 shape = SubResource("HeightMapShape3D_0h46a")
+
+[node name="BRICK" parent="." instance=ExtResource("1_lg20k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14673, -3.09201)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.593967, 0.80449, 0, -0.80449, 0.593967, 0, 3.53484, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_n7ilk")]
