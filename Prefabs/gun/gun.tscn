@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dowldn2ew7187"]
+
+[ext_resource type="Script" path="res://Prefabs/gun/gun.gd" id="1_tppgy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nx2kh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_deuni"]
+
+[node name="gun" type="StaticBody3D"]
+script = ExtResource("1_tppgy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_nx2kh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_deuni")
+skeleton = NodePath("../..")
