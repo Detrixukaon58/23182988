@@ -14,6 +14,13 @@ func _ready():
 	cam = $PlayerCam
 	floor_check = get_node("FloorCheck");
 
+func _process(delta):
+	if Input.action_press("shoot") :
+		
+	
+
+
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
