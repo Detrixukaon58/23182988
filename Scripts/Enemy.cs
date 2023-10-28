@@ -77,7 +77,7 @@ public partial class Enemy : CharacterBody3D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-		anim = GetNode<AnimationTree>("MeshInstance3D/AnimationPlayer/AnimationTree");
+		anim = GetNode<AnimationTree>("AnimationTree");
 		isMoving = false;
 		ForwardCheck = GetNode<RayCast3D>("ForwardCheck");
 	}
@@ -139,5 +139,6 @@ public partial class Enemy : CharacterBody3D
 		}
 		DebugDraw3D.DrawSphere(Position, viewDepth, Colors.Aqua);
 		DebugDraw3D.DrawArrowLine(Position + Vector3.Up, Position + -Transform.Basis.Z + Vector3.Up, Colors.Red);
+		anim.Set("moving", isMoving);
     }
 }
