@@ -4,6 +4,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var cam: Camera3D
+var floor_check: RayCast3D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -11,6 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	cam = $PlayerCam
+	floor_check = get_node("FloorCheck");
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -32,10 +34,12 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	move_and_slide()
+	
+	move_and_slide();
 
 func _input(event):
 	if (event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
 		cam.rotate_x(deg_to_rad(event.relative.y * -SENSITIVITY))
 		rotate_y(deg_to_rad(event.relative.x * -SENSITIVITY))
+		
+		

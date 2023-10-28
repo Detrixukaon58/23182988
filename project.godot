@@ -14,6 +14,10 @@ config/name="23182988"
 run/main_scene="res://Scenes/Testing_Ground.tscn"
 config/features=PackedStringArray("4.1", "C#")
 
+[autoload]
+
+RoomManager="*res://Scripts/RoomManager.cs"
+
 [dotnet]
 
 project/assembly_name="23182988"
