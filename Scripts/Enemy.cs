@@ -129,16 +129,35 @@ public partial class Enemy : CharacterBody3D
 			Velocity = direction * movementSpd;
 			
 			MoveAndSlide();
-			isMoving = true;
+			if(Velocity.LengthSquared() >= 0.1f){
+				isMoving = true;
+			}
+			else{
+				isMoving = false;
+			}
 			Vector3 dd = new Vector3(direction.X, 0.0f, direction.Z);
 			Rotation = new Vector3(0.0f, Vector3.Forward.SignedAngleTo(dd, Vector3.Up), 0.0f);
+			Attack();
 		}
 		else{
 			Velocity = Vector3.Zero;
 			isMoving = false;
+			anim.Set("attacking", false);
 		}
 		DebugDraw3D.DrawSphere(Position, viewDepth, Colors.Aqua);
 		DebugDraw3D.DrawArrowLine(Position + Vector3.Up, Position + -Transform.Basis.Z + Vector3.Up, Colors.Red);
 		anim.Set("moving", isMoving);
     }
+
+	public void Attack(){
+
+		if(ForwardCheck.IsColliding() && Position.DistanceTo(target.Position) <= 2.0f){
+			// We begin our attack!!
+			anim.Set("attacking", true);
+		}
+		else{
+			anim.Set("attacking", false);
+		}
+
+	}
 }

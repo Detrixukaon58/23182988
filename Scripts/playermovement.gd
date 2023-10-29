@@ -1,10 +1,10 @@
 extends CharacterBody3D
 
 @export var SENSITIVITY: float;
-const SPEED = 5.0
+const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 var cam: Camera3D
-var hit_scan: RayCast3D
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -12,11 +12,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	cam = $PlayerCam
-	hit_scan = get_node("HitScan");
 
 func _process(delta):
-	#if Input.action_press("shoot") :
-		pass
+	pass
+	
+
 	
 
 

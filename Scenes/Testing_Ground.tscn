@@ -27,11 +27,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14673, -3.09201)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.593967, 0.80449, 0, -0.80449, 0.593967, 0, 3.53484, 0)
+visible = false
+shadow_enabled = true
+directional_shadow_mode = 1
+sky_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_n7ilk")]
 
 [node name="Enemy" parent="." instance=ExtResource("3_dutbn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6279, -9.53674e-07, 14.3071)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.89816, -9.53674e-07, 4.73138)
 movementSpd = 5.0
 viewAngle = 45.0
-viewDepth = 45.0
+viewDepth = 10.0
