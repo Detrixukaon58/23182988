@@ -23,7 +23,7 @@ transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, 
 shape = SubResource("HeightMapShape3D_0h46a")
 
 [node name="BRICK" parent="." instance=ExtResource("1_lg20k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14673, -3.09201)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.14673, -3.09201)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.593967, 0.80449, 0, -0.80449, 0.593967, 0, 3.53484, 0)
@@ -36,6 +36,3 @@ sky_mode = 1
 
 [node name="Enemy" parent="." instance=ExtResource("3_dutbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.89816, -9.53674e-07, 4.73138)
-movementSpd = 5.0
-viewAngle = 45.0
-viewDepth = 10.0

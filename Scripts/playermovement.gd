@@ -4,7 +4,7 @@ extends CharacterBody3D
 const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 var cam: Camera3D
-
+var gun: StaticBody3D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -12,13 +12,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	cam = $PlayerCam
+	gun = $gun
 
 func _process(delta):
-	pass
-	
-
-	
-
+	if Input.is_action_just_pressed("shoot"):
+		gun.fire()
 
 
 func _physics_process(delta):
