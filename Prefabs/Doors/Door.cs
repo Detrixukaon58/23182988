@@ -86,8 +86,6 @@ public partial class Door : Node3D
 			// GD.Print(main.GlobalRotation);
 			cam.Rotation = (new Quaternion(
 				Vector3.Up, Vector3.Forward.SignedAngleTo(xyPosition - Position, Vector3.Up) 
-				) * new Quaternion(
-					Vector3.Right, pitch
 				)).GetEuler();
 		}
 	}
