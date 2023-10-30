@@ -17,7 +17,7 @@ public partial class Door : Node3D
 
 	Array<Node3D> enteredBodies = new Array<Node3D>();
 
-	bool hasTellop;
+	[Export] bool hasTellop;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -76,11 +76,19 @@ public partial class Door : Node3D
 	public void SortCamera() {
 		if(GetViewport().GetCamera3D() is Camera3D main && main != null){
 			// GD.Print(main.Name);
-			cam.Position = OtherDoor.Position + main.GlobalTransform.Basis.GetRotationQuaternion().Normalized() * Vector3.Forward * 0.5f + Vector3.Up * main.GlobalPosition.Y
-				+ Vector3.Forward * (main.GlobalPosition.Z - Position.Z) + Vector3.Right * (main.GlobalPosition.X - Position.X)
+			Vector3 xyPosition = new Vector3(main.GlobalPosition.X, 0.0f, main.GlobalPosition.Z);
+			Vector3 forward = Quaternion.FromEuler(new Vector3(0.0f, Vector3.Forward.SignedAngleTo(xyPosition - Position, Vector3.Up) , 0.0f)) * Vector3.Forward;
+			cam.Position = OtherDoor.Position - forward + Vector3.Up * main.GlobalPosition.Y;
+				// + Vector3.Forward * (main.GlobalPosition.Z - Position.Z) - Vector3.Right * (main.GlobalPosition.X - Position.X)
 				;
+
+			float pitch = Mathf.Pi / 2.0f - (main.GlobalPosition - Position).SignedAngleTo(xyPosition - main.GlobalPosition, Vector3.Right);
 			// GD.Print(main.GlobalRotation);
-			cam.Rotation = new Quaternion(Vector3.Up, main.GlobalRotation.Y - Mathf.Pi).GetEuler();
+			cam.Rotation = (new Quaternion(
+				Vector3.Up, Vector3.Forward.SignedAngleTo(xyPosition - Position, Vector3.Up) 
+				) * new Quaternion(
+					Vector3.Right, pitch
+				)).GetEuler();
 		}
 	}
 
@@ -115,7 +123,7 @@ public partial class Door : Node3D
 	public void Teleport(Node3D body){
 		if((isOpen || OtherDoor.isOpen) && !OtherDoor.hasTellop){
 			if(body.Name == "Player" || body.IsInGroup("Player")){
-				body.Position = OtherDoor.Position - body.Transform.Basis.GetRotationQuaternion().Normalized() * OtherDoor.Transform.Basis.GetRotationQuaternion().Normalized() * Vector3.Forward * 0.5f + Vector3.Up;
+				body.Position = OtherDoor.Position + Vector3.Up;
 				body.GlobalRotate(Vector3.Up, body.Rotation.Y - Rotation.Y + Mathf.Pi);
 				GD.Print(body.Rotation.Y - Rotation.Y + Mathf.Pi);
 				GD.Print(body.Rotation);
