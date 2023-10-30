@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://1ky5hv50vc0a"]
 
-[ext_resource type="Script" path="res://Prefabs/Doors/Door.cs" id="1_08eg7"]
+[ext_resource type="Script" path="res://Scripts/Door.cs" id="1_08eg7"]
 [ext_resource type="PackedScene" uid="uid://dct8qbeims7tk" path="res://Models/Door.glb" id="2_oegnq"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_kghi7"]

@@ -90,8 +90,8 @@ public partial class Door : Node3D
 		}
 	}
 
-    public override void _PhysicsProcess(double delta)
-    {
+	public override void _PhysicsProcess(double delta)
+	{
 		if(enteredBodies.Count != 0){
 			foreach(Node3D body in enteredBodies){
 				if(body.Name == "Player" || body.IsInGroup("Player")){
@@ -108,7 +108,7 @@ public partial class Door : Node3D
 				}
 			}
 		}
-    }
+	}
 
 	public void BodyEnter(Node3D body){
 		enteredBodies.Add(body);

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://8axkjdri2xdg"]
+[gd_scene load_steps=7 format=3 uid="uid://8axkjdri2xdg"]
 
 [ext_resource type="PackedScene" uid="uid://c4suatqv0lyum" path="res://Prefabs/brick.tscn" id="1_lg20k"]
 [ext_resource type="PackedScene" uid="uid://cm1a2s47xok0q" path="res://Prefabs/player.tscn" id="2_n7ilk"]
 [ext_resource type="PackedScene" uid="uid://cindpmnor1pi3" path="res://Prefabs/Enemies/Enemy.tscn" id="3_dutbn"]
+[ext_resource type="PackedScene" uid="uid://1ky5hv50vc0a" path="res://Prefabs/Doors/Door_Small.tscn" id="4_urvn6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ntdjx"]
 
@@ -12,7 +13,6 @@
 
 [node name="PlaneBody" type="StaticBody3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0)
-visible = false
 
 [node name="PlaneMesh" type="MeshInstance3D" parent="PlaneBody"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -25,7 +25,6 @@ shape = SubResource("HeightMapShape3D_0h46a")
 
 [node name="BRICK" parent="." instance=ExtResource("1_lg20k")]
 transform = Transform3D(37.005, 0, 0, 0, 12.93, 0, 0, 0, 1, 1.97679, 0.540093, 28.4524)
-visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.593967, 0.80449, 0, -0.80449, 0.593967, 0, 3.53484, 0)
@@ -42,3 +41,17 @@ viewDepth = 10.0
 
 [node name="BRICK2" parent="." instance=ExtResource("1_lg20k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.84474, 1.67451, 41.3177)
+
+[node name="door A" parent="." node_paths=PackedStringArray("OtherDoor") instance=ExtResource("4_urvn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.26426, 0, 29.1262)
+visibility_parent = NodePath("../PlaneBody/PlaneMesh")
+OtherDoor = NodePath("../door B")
+isOpen = true
+hasTellop = true
+
+[node name="door B" parent="." node_paths=PackedStringArray("OtherDoor") instance=ExtResource("4_urvn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.45316, -0.134689, 29.1289)
+visibility_parent = NodePath("../PlaneBody/PlaneMesh")
+OtherDoor = NodePath("../door A")
+isOpen = true
+hasTellop = true
