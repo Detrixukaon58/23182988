@@ -1,0 +1,164 @@
+[gd_scene load_steps=27 format=3 uid="uid://cindpmnor1pi3"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_q0qdp"]
+[ext_resource type="PackedScene" uid="uid://d1ehpw0crkqea" path="res://Models/Zambino.glb" id="2_7vudi"]
+[ext_resource type="Script" path="res://Prefabs/Enemies/BaseExpressionVariables.gd" id="3_mt65j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_40nxp"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_mftq0"]
+filter_enabled = true
+filters = ["metarig/Skeleton3D:shoulder.L", "metarig/Skeleton3D:shoulder.R", "metarig/Skeleton3D:spine", "metarig/Skeleton3D:spine.002", "metarig/Skeleton3D:spine.003", "metarig/Skeleton3D:upper_arm.L", "metarig/Skeleton3D:upper_arm.R"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_633fo"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jd530"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ehdb8"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sdi1b"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xrsdl"]
+advance_mode = 2
+advance_expression = "attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y6vqv"]
+advance_mode = 2
+advance_expression = "!attacking
+"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yth7d"]
+states/Attack/node = SubResource("AnimationNodeAnimation_jd530")
+states/Attack/position = Vector2(668, 89)
+states/Start/position = Vector2(201, 100)
+states/StateMachine/node = SubResource("AnimationNodeStateMachine_ehdb8")
+states/StateMachine/position = Vector2(411, 100)
+transitions = ["Start", "StateMachine", SubResource("AnimationNodeStateMachineTransition_sdi1b"), "StateMachine", "Attack", SubResource("AnimationNodeStateMachineTransition_xrsdl"), "Attack", "StateMachine", SubResource("AnimationNodeStateMachineTransition_y6vqv")]
+graph_offset = Vector2(34, 22)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lm27v"]
+graph_offset = Vector2(-355.626, 6.70586)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_mftq0")
+nodes/Add2/position = Vector2(100, 140)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_633fo")
+nodes/Animation/position = Vector2(-160, 120)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_yth7d")
+nodes/StateMachine/position = Vector2(-160, 240)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Animation", &"Add2", 1, &"StateMachine"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_5xmb6"]
+filter_enabled = true
+filters = ["metarig/Skeleton3D:shoulder.L", "metarig/Skeleton3D:shoulder.R", "metarig/Skeleton3D:spine", "metarig/Skeleton3D:spine.002", "metarig/Skeleton3D:spine.003", "metarig/Skeleton3D:upper_arm.L", "metarig/Skeleton3D:upper_arm.R"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fejop"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7d536"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_81e30"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_riakj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7h44y"]
+advance_mode = 2
+advance_expression = "attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kh67o"]
+advance_mode = 2
+advance_expression = "!attacking"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_o55d2"]
+states/Attack/node = SubResource("AnimationNodeAnimation_7d536")
+states/Attack/position = Vector2(489, 94)
+states/Start/position = Vector2(195, 100)
+states/StateMachine/node = SubResource("AnimationNodeStateMachine_81e30")
+states/StateMachine/position = Vector2(336, 94)
+transitions = ["Start", "StateMachine", SubResource("AnimationNodeStateMachineTransition_riakj"), "StateMachine", "Attack", SubResource("AnimationNodeStateMachineTransition_7h44y"), "Attack", "StateMachine", SubResource("AnimationNodeStateMachineTransition_kh67o")]
+graph_offset = Vector2(-11, 25)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_orcyk"]
+graph_offset = Vector2(-338.094, -6.07355)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_5xmb6")
+nodes/Add2/position = Vector2(160, 120)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_fejop")
+nodes/Animation/position = Vector2(-60, 120)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_o55d2")
+nodes/StateMachine/position = Vector2(-60, 240)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Animation", &"Add2", 1, &"StateMachine"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vs072"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xewm6"]
+advance_mode = 2
+advance_expression = "moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2iqkq"]
+advance_mode = 2
+advance_expression = "!moving"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ih6s6"]
+states/Idle/node = SubResource("AnimationNodeBlendTree_lm27v")
+states/Idle/position = Vector2(333, 150)
+states/Move/node = SubResource("AnimationNodeBlendTree_orcyk")
+states/Move/position = Vector2(333, 255)
+states/Start/position = Vector2(147, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_vs072"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_xewm6"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_2iqkq")]
+graph_offset = Vector2(-113, 92)
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_q0qdp")
+attackSpd = 0.0
+atackPwr = null
+movementSpd = 0.0
+isLarge = false
+viewAngle = 0.0
+viewDepth = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_40nxp")
+
+[node name="Zambino" parent="." instance=ExtResource("2_7vudi")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Zambino/metarig" index="0"]
+bones/0/position = Vector3(0.492313, 0.5372, 0.449443)
+bones/1/position = Vector3(-0.341799, 0.5372, 0.453822)
+bones/2/position = Vector3(0.328602, 0.0852, -0.0205596)
+bones/3/position = Vector3(-0.231757, 0.0852, -0.0162)
+bones/5/position = Vector3(0.0540942, 0.789898, -0.009041)
+bones/5/rotation = Quaternion(0.126211, 0.000153559, -0.000145455, 0.992003)
+bones/7/rotation = Quaternion(0.0435355, 0, 0, 0.999052)
+bones/12/rotation = Quaternion(-0.401697, -0.498047, -0.510237, 0.574671)
+bones/13/rotation = Quaternion(0.471266, 0.526954, -0.294795, 0.642903)
+bones/16/rotation = Quaternion(-0.401697, 0.498047, 0.510237, 0.574671)
+bones/17/rotation = Quaternion(0.471266, -0.526954, 0.294795, 0.642903)
+bones/24/rotation = Quaternion(0.872738, 0.156082, -0.240442, 0.395163)
+bones/25/rotation = Quaternion(0.617818, 0.00925049, -0.00608209, 0.786243)
+bones/26/rotation = Quaternion(-0.772254, 0.052055, -3.05062e-05, 0.633177)
+bones/29/rotation = Quaternion(0.882366, -0.154586, 0.199938, 0.396935)
+bones/30/rotation = Quaternion(0.614865, -0.00927768, 0.00605299, 0.788554)
+bones/31/rotation = Quaternion(-0.765445, -0.0659564, -0.045016, 0.638527)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_ih6s6")
+anim_player = NodePath("../Zambino/AnimationPlayer")
+active = true
+root_motion_track = NodePath("RootNode/metarig/Skeleton3D:spine")
+parameters/Idle/Add2/add_amount = 1.0
+parameters/Move/Add2/add_amount = 1.0
+script = ExtResource("3_mt65j")
+
+[node name="ForwardCheck" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, -2)
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 0, 1, 1)
+
+[editable path="Zambino"]

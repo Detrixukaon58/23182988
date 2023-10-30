@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://bo5nueao8yy07"]
+
+[ext_resource type="Script" path="res://Scripts/playermovement.gd" id="1_e0hjl"]
+[ext_resource type="PackedScene" uid="uid://bksa47bk3s2ke" path="res://Models/Player_1st.glb" id="2_ao41q"]
+[ext_resource type="PackedScene" uid="uid://dowldn2ew7187" path="res://Prefabs/gun/gun.tscn" id="3_nvcqj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hkwan"]
+
+[sub_resource type="Sky" id="Sky_qvwa7"]
+
+[sub_resource type="Environment" id="Environment_wbwhu"]
+sky = SubResource("Sky_qvwa7")
+sky_custom_fov = 75.0
+ambient_light_color = Color(0.8, 0.8, 0.8, 1)
+ambient_light_energy = 0.3
+volumetric_fog_density = 0.1245
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tnowq"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_e0hjl")
+SENSITIVITY = 0.05
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Player"]]
+shape = SubResource("CapsuleShape3D_hkwan")
+
+[node name="PlayerCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+cull_mask = 1048573
+environment = SubResource("Environment_wbwhu")
+current = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+msaa_2d = 1
+msaa_3d = 1
+size = Vector2i(1280, 720)
+
+[node name="UICamera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+cull_mask = 2
+current = true
+
+[node name="Player_1st" parent="SubViewport/UICamera3D" groups=["Player"] instance=ExtResource("2_ao41q")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.25, 0)
+
+[node name="Left" parent="SubViewport/UICamera3D/Player_1st" index="0"]
+transform = Transform3D(0.0712032, 0, 0.0777046, 0, 0.105394, 0, -0.0777046, 0, 0.0712032, 0, 0, 0)
+layers = 2
+
+[node name="gun" parent="SubViewport/UICamera3D/Player_1st/Left" index="0" instance=ExtResource("3_nvcqj")]
+transform = Transform3D(-0.533924, 0, 0.845532, 0, 0.999999, 0, -0.845532, 0, -0.533924, -6.70585, 1.11024, 0.592051)
+
+[node name="Right" parent="SubViewport/UICamera3D/Player_1st" index="1"]
+transform = Transform3D(0.0712032, 0, -0.0777046, 0, 0.105394, 0, 0.0777046, 0, 0.0712032, 0, 0, 0)
+layers = 2
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UserInterface"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("ViewportTexture_tnowq")
+expand_mode = 2
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 1.468
+omni_range = 11.0
+
+[editable path="SubViewport/UICamera3D/Player_1st"]

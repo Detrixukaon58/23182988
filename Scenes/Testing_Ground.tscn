@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://8axkjdri2xdg"]
 
-[ext_resource type="PackedScene" uid="uid://dtbu8sjyu645u" path="res://Prefabs/brick.res" id="1_lg20k"]
-[ext_resource type="PackedScene" uid="uid://dpbghxb3p4j3n" path="res://Prefabs/player.res" id="2_n7ilk"]
-[ext_resource type="PackedScene" uid="uid://ss4h4m8d8ktg" path="res://Prefabs/Enemies/Enemy.res" id="3_dutbn"]
-[ext_resource type="PackedScene" uid="uid://dnvmp7dt6stwm" path="res://Prefabs/Doors/Door_Small.scn" id="4_0k1aq"]
+[ext_resource type="PackedScene" uid="uid://c4suatqv0lyum" path="res://Prefabs/brick.tscn" id="1_lg20k"]
+[ext_resource type="PackedScene" uid="uid://bo5nueao8yy07" path="res://Prefabs/player.tscn" id="2_n7ilk"]
+[ext_resource type="PackedScene" uid="uid://cindpmnor1pi3" path="res://Prefabs/Enemies/Enemy.tscn" id="3_dutbn"]
+[ext_resource type="PackedScene" uid="uid://1ky5hv50vc0a" path="res://Prefabs/Doors/Door_Small.tscn" id="4_0k1aq"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ntdjx"]
 
@@ -44,7 +44,6 @@ viewDepth = 10.0
 [node name="Door_Small" parent="." node_paths=PackedStringArray("OtherDoor") instance=ExtResource("4_0k1aq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 29)
 OtherDoor = NodePath("../Door_Small2")
-isOpen = true
 
 [node name="Door_Small2" parent="." node_paths=PackedStringArray("OtherDoor") instance=ExtResource("4_0k1aq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9393, 1.36812e-13, 29.0854)
