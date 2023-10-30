@@ -4,6 +4,7 @@ extends CharacterBody3D
 const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 var cam: Camera3D
+var uiCam: Camera3D;
 var initRot: Vector3;
 var viewRot: Vector3;
 
@@ -14,11 +15,11 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	cam = $PlayerCam
 	initRot = rotation;
+	uiCam = $SubViewport/UICamera3D;
 
 func _process(delta):
-	pass
+	uiCam.position = cam.position;
 	
-
 	
 
 
