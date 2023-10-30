@@ -8,8 +8,12 @@ var cam: Camera3D
 var uiCam: Camera3D;
 var initRot: Vector3;
 var viewRot: Vector3;
-
 var gun: StaticBody3D
+
+var maxHealth: int = 100;
+var health: int = 100;
+
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
