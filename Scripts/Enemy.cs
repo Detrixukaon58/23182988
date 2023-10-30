@@ -22,11 +22,11 @@ public partial class Enemy : CharacterBody3D
 	float largeAttkPwr;
 	float largeAttkSpd;
 
-    #endregion
+	#endregion
 
-    #region MeshHandling
+	#region MeshHandling
 	AnimationTree anim;
-    #endregion
+	#endregion
 
 	#region Ai
 	bool isMoving;
@@ -39,17 +39,17 @@ public partial class Enemy : CharacterBody3D
 	RayCast3D ForwardCheck;
 	#endregion
 
-    public override Array<Dictionary> _GetPropertyList()
-    {
-        Array<Dictionary> list = new Array<Dictionary>
-        {
-            PropEntry("attackSpd", Variant.Type.Float, PropertyHint.None),
+	public override Array<Dictionary> _GetPropertyList()
+	{
+		Array<Dictionary> list = new Array<Dictionary>
+		{
+			PropEntry("attackSpd", Variant.Type.Float, PropertyHint.None),
 			PropEntry("atackPwr", Variant.Type.Float, PropertyHint.None),
 			PropEntry("movementSpd", Variant.Type.Float, PropertyHint.None),
 			PropEntry("isLarge", Variant.Type.Bool, PropertyHint.None),
 			PropEntry("viewAngle", Variant.Type.Float, PropertyHint.None),
 			PropEntry("viewDepth", Variant.Type.Float, PropertyHint.None),
-        };
+		};
 
 		#if TOOLS
 		if(isLarge == true){
@@ -62,7 +62,7 @@ public partial class Enemy : CharacterBody3D
 		list.Add(PropEntry("largeAttkSpd", Variant.Type.Float, PropertyHint.None));
 		#endif
 		return list;
-    }
+	}
 
 		public static Dictionary PropEntry(string name, Variant.Type type, PropertyHint hint, string hintStr = "")
 	{
@@ -74,32 +74,32 @@ public partial class Enemy : CharacterBody3D
 		return d;
 	}
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
 	{
 		anim = GetNode<AnimationTree>("AnimationTree");
 		isMoving = false;
 		ForwardCheck = GetNode<RayCast3D>("ForwardCheck");
 	}
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _PhysicsProcess(double delta)
-    {
-        PhysicsShapeQueryParameters3D qParams = new PhysicsShapeQueryParameters3D
-        {
-            CollideWithAreas = true,
-            CollideWithBodies = true,
-            CollisionMask = CollisionMask,
-            Exclude = new Array<Rid> { GetRid(), }
-        };
-        SphereShape3D shape = new SphereShape3D();
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _PhysicsProcess(double delta)
+	{
+		PhysicsShapeQueryParameters3D qParams = new PhysicsShapeQueryParameters3D
+		{
+			CollideWithAreas = true,
+			CollideWithBodies = true,
+			CollisionMask = CollisionMask,
+			Exclude = new Array<Rid> { GetRid(), }
+		};
+		SphereShape3D shape = new SphereShape3D();
 		shape.Radius = viewDepth;
 		qParams.ShapeRid = shape.GetRid();
 		qParams.Transform = Transform;
 
 		var results = GetWorld3D().DirectSpaceState.IntersectShape(qParams);
 		
-        if(results != null && results.Count != 0){
+		if(results != null && results.Count != 0){
 			// We have found something on thisa collision plane!!
 			// Now we test to see if they are the player!!
 			foreach(var result in results){
@@ -147,7 +147,7 @@ public partial class Enemy : CharacterBody3D
 		DebugDraw3D.DrawSphere(Position, viewDepth, Colors.Aqua);
 		DebugDraw3D.DrawArrowLine(Position + Vector3.Up, Position + -Transform.Basis.Z + Vector3.Up, Colors.Red);
 		anim.Set("moving", isMoving);
-    }
+	}
 
 	public void Attack(){
 

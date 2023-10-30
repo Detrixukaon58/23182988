@@ -1,6 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://cb2l5mlxwen4c"]
-
-[ext_resource type="Script" path="res://Prefabs/gun/bullet.gd" id="1_m4etw"]
+[gd_scene format=3 uid="uid://cb2l5mlxwen4c"]
 
 [node name="bullet" type="RayCast3D"]
-script = ExtResource("1_m4etw")

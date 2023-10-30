@@ -7,16 +7,20 @@ var cam: Camera3D
 var initRot: Vector3;
 var viewRot: Vector3;
 
+var gun: StaticBody3D
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	cam = $PlayerCam
+	gun = $SubViewport/UICamera3D/Player_1st/Left/gun
 	initRot = rotation;
 
 func _process(delta):
-	pass
+	if Input.is_action_just_pressed("shoot"):
+		gun.fire()
 	
 
 	
