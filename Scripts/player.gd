@@ -9,7 +9,7 @@ var uiCam: Camera3D;
 var initRot: Vector3;
 var viewRot: Vector3;
 
-var gun: StaticBody3D
+var gun: Node3D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -46,13 +46,14 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("leftstrafe", "rightstrafe", "forwards", "backwards")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
+	
+	if direction.length_squared() > 0:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
+	# print(velocity)
 	move_and_slide();
 	
 

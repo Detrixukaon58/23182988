@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://cb2l5mlxwen4c"]
+[gd_scene load_steps=2 format=3 uid="uid://cb2l5mlxwen4c"]
 
-[node name="bullet" type="RayCast3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_0pl2l"]
+radius = 0.25
+
+[node name="bullet" type="ShapeCast3D"]
+shape = SubResource("SphereShape3D_0pl2l")
+target_position = Vector3(0, 0, -1)
