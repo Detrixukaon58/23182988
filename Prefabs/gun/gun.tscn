@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://dowldn2ew7187"]
 
-[ext_resource type="Script" path="res://Prefabs/gun/gun.gd" id="1_tppgy"]
+[ext_resource type="Script" path="res://Scripts/gun.gd" id="1_t26jj"]
 [ext_resource type="PackedScene" uid="uid://dua3x5qaj3koo" path="res://Models/Pistole.glb" id="2_m3yq2"]
 [ext_resource type="PackedScene" uid="uid://cb2l5mlxwen4c" path="res://Prefabs/gun/bullet.tscn" id="3_ymdop"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nx2kh"]
 
 [node name="gun" type="StaticBody3D"]
-script = ExtResource("1_tppgy")
+script = ExtResource("1_t26jj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_nx2kh")

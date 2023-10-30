@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bo5nueao8yy07"]
+[gd_scene load_steps=8 format=3 uid="uid://cm1a2s47xok0q"]
 
-[ext_resource type="Script" path="res://Scripts/playermovement.gd" id="1_e0hjl"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_6sy4w"]
 [ext_resource type="PackedScene" uid="uid://bksa47bk3s2ke" path="res://Models/Player_1st.glb" id="2_ao41q"]
 [ext_resource type="PackedScene" uid="uid://dowldn2ew7187" path="res://Prefabs/gun/gun.tscn" id="3_nvcqj"]
 
@@ -21,7 +21,7 @@ viewport_path = NodePath("SubViewport")
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_e0hjl")
+script = ExtResource("1_6sy4w")
 SENSITIVITY = 0.05
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Player"]]

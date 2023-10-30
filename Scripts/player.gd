@@ -1,3 +1,4 @@
+#@tool
 extends CharacterBody3D
 
 @export var SENSITIVITY: float;
@@ -21,7 +22,8 @@ func _ready():
 	uiCam = $SubViewport/UICamera3D;
 
 func _process(delta):
-	uiCam.position = cam.position;
+	uiCam.global_position = cam.global_position;
+	uiCam.rotation = cam.global_rotation;
 	if Input.is_action_just_pressed("shoot"):
 		gun.fire()
 	

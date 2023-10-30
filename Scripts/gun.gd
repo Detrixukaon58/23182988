@@ -18,7 +18,8 @@ const RELOAD_ANIM_NAME = "Pistol_reload"
 
 
 func fire():
-	bullet.target_position = bulletDistance * global_transform.basis.z.normalized()
+	bullet.global_position = global_position
+	bullet.target_position = bulletDistance * Vector3.FORWARD
 	if bullet.is_colliding():
 		print("yippee")
 	print(bullet.global_position)

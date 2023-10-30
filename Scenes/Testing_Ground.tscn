@@ -1,13 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://8axkjdri2xdg"]
+[gd_scene load_steps=8 format=3 uid="uid://8axkjdri2xdg"]
 
 [ext_resource type="PackedScene" uid="uid://c4suatqv0lyum" path="res://Prefabs/brick.tscn" id="1_lg20k"]
-[ext_resource type="PackedScene" uid="uid://bo5nueao8yy07" path="res://Prefabs/player.tscn" id="2_n7ilk"]
+[ext_resource type="PackedScene" uid="uid://cm1a2s47xok0q" path="res://Prefabs/player.tscn" id="2_n7ilk"]
 [ext_resource type="PackedScene" uid="uid://cindpmnor1pi3" path="res://Prefabs/Enemies/Enemy.tscn" id="3_dutbn"]
 [ext_resource type="PackedScene" uid="uid://1ky5hv50vc0a" path="res://Prefabs/Doors/Door_Small.tscn" id="4_0k1aq"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ntdjx"]
 
 [sub_resource type="HeightMapShape3D" id="HeightMapShape3D_0h46a"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2bgmm"]
+viewport_path = NodePath("Player/SubViewport")
 
 [node name="SceneRoot" type="Node3D"]
 
@@ -33,7 +36,10 @@ transform = Transform3D(1, 0, 0, 0, 0.593967, 0.80449, 0, -0.80449, 0.593967, 0,
 directional_shadow_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_n7ilk")]
-transform = Transform3D(0.999601, 0, -0.0282357, 0, 1, 0, 0.0282357, 0, 0.999601, 1.56208, 0.787462, 29.7877)
+transform = Transform3D(0.285688, 0, 0.958322, 0, 1, 0, -0.958322, 0, 0.285688, 1.56208, 0.787462, 29.7877)
+
+[node name="TextureRect" parent="Player/UserInterface" index="0"]
+texture = SubResource("ViewportTexture_2bgmm")
 
 [node name="Enemy" parent="." instance=ExtResource("3_dutbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.89816, -9.53674e-07, 4.73138)
@@ -51,3 +57,6 @@ OtherDoor = NodePath("../Door_Small")
 
 [node name="BRICK2" parent="." instance=ExtResource("1_lg20k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.84474, 1.67451, 41.3177)
+
+[editable path="Player"]
+[editable path="Player/SubViewport/UICamera3D/Player_1st"]
