@@ -82,7 +82,7 @@ public partial class Door : Node3D
 				// + Vector3.Forward * (main.GlobalPosition.Z - Position.Z) - Vector3.Right * (main.GlobalPosition.X - Position.X)
 				;
 
-			float pitch = Mathf.Pi / 2.0f - (main.GlobalPosition - Position).SignedAngleTo(xyPosition - main.GlobalPosition, Vector3.Right);
+			float pitch = Mathf.Pi / 2.0f - (main.GlobalPosition - Vector3.Up - Position).SignedAngleTo(xyPosition - main.GlobalPosition + Vector3.Up, Vector3.Right);
 			// GD.Print(main.GlobalRotation);
 			cam.Rotation = (new Quaternion(
 				Vector3.Up, Vector3.Forward.SignedAngleTo(xyPosition - Position, Vector3.Up) 
