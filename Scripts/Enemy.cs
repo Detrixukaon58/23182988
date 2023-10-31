@@ -157,7 +157,12 @@ public partial class Enemy : CharacterBody3D
 
 		if(ForwardCheck.IsColliding() && Position.DistanceTo(target.Position) <= 2.0f){
 			// We begin our attack!!
+			
 			anim.Set("attacking", true);
+			if (ForwardCheck.GetCollider().HasMethod("hurt"))
+			{
+				// i do nor know how to call the method in a way that doesnt make godot complain
+			}
 		}
 		else{
 			anim.Set("attacking", false);
