@@ -185,15 +185,6 @@ public partial class Enemy : CharacterBody3D
 		{
 			health = maxHealth;
 		}
-		GD.Print(health);
-	}
-	
-	public void heal(int amount)
-	{
-		health += amount;
-		if (health > maxHealth)
-		{
-			health = maxHealth;
-		}
+		GD.Print($"health remainin' {health}");
 	}
 }
