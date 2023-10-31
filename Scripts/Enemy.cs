@@ -15,7 +15,10 @@ public partial class Enemy : CharacterBody3D
 	float attackSpd;
 	float attackPwr;
 	float movementSpd;
-
+	
+	int maxHealth = 100;
+	int health = 100;
+	
 	bool isLarge;
 
 	
@@ -149,7 +152,8 @@ public partial class Enemy : CharacterBody3D
 		anim.Set("moving", isMoving);
 	}
 
-	public void Attack(){
+	public void Attack()
+	{
 
 		if(ForwardCheck.IsColliding() && Position.DistanceTo(target.Position) <= 2.0f){
 			// We begin our attack!!
@@ -158,6 +162,33 @@ public partial class Enemy : CharacterBody3D
 		else{
 			anim.Set("attacking", false);
 		}
-
+	}
+	
+	public void die()
+	{
+		return;
+	}
+	
+	public void hurt(int amount)
+	{
+		health -= amount;
+		if (health < 0)
+		{
+			die();
+		}
+		if (health > maxHealth)
+		{
+			health = maxHealth;
+		}
+		GD.Print(health);
+	}
+	
+	public void heal(int amount)
+	{
+		health += amount;
+		if (health > maxHealth)
+		{
+			health = maxHealth;
+		}
 	}
 }

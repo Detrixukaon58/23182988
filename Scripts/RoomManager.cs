@@ -99,10 +99,10 @@ public partial class RoomManager : Node
 		Guid newGuid = Guid.NewGuid();
 		rooms.Add((newGuid, newRoom));
 		Godot.Collections.Dictionary dict = new Godot.Collections.Dictionary
-        {
-            { "guid", newGuid.ToString() },
+		{
+			{ "guid", newGuid.ToString() },
 			{ "room", newRoom },
-        };
+		};
 			
 		
 		return dict;

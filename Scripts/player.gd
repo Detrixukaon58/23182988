@@ -67,7 +67,7 @@ func _input(event):
 func die():
 	pass
 
-func damage(amount: int = 0):
+func hurt(amount: int = 0):
 	health -= amount;
 	if health <= 0:
 		die()

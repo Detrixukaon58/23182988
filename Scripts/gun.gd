@@ -3,7 +3,7 @@ extends Node3D
 @export var fireRate: int = 1;
 @export var recoil: int = 1;
 
-@export var bulletCapacity: int = 10;
+@export var bulletCapacity: int = 1000;
 @export var bulletsRemaining: int = bulletCapacity;
 @export var reloadSpeed: int = 1;
 
@@ -29,7 +29,11 @@ func fire():
 		bullet.global_position = global_position
 		bullet.target_position = Vector3.FORWARD * bulletDistance;
 		if bullet.is_colliding():
-			print("yippee")
-		print(bullet.target_position)
+			var firstCollider = bullet.get_collider(0) # wack this in the big var list on top
+			print("first hitting", firstCollider)
+			if firstCollider.has_method("hurt"):
+				firstCollider.hurt(bulletDamage)
 		
 		bulletsRemaining -= 1
+		
+	printt("bulletsRemaining", bulletsRemaining)
