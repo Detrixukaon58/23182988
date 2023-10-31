@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnnm4sofme3g8"]
+[gd_scene load_steps=7 format=3 uid="uid://bnnm4sofme3g8"]
 
 [ext_resource type="PackedScene" uid="uid://1ky5hv50vc0a" path="res://Prefabs/Doors/Door_Small.tscn" id="1_7ls6o"]
+[ext_resource type="Texture2D" uid="uid://27g545vhsub8" path="res://Textures/whatsapp-car.jpg" id="2_wifhj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_gr2gm"]
 flip_faces = true
@@ -45,3 +46,7 @@ shape = SubResource("BoxShape3D_gonn3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomMesh/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.5, 0)
 shape = SubResource("BoxShape3D_kabsy")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 5.75)
+texture = ExtResource("2_wifhj")

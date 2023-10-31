@@ -29,7 +29,7 @@ shape = SubResource("CapsuleShape3D_hkwan")
 
 [node name="PlayerCam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-cull_mask = 1048573
+cull_mask = 997
 environment = SubResource("Environment_wbwhu")
 current = true
 
