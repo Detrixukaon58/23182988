@@ -150,25 +150,29 @@ public partial class RoomManager : Node3D
 		switch(choice){
 			case 0:
 			{
+				if(possibleGoals.Count != 0){
+					int index = rng.RandiRange(0, possibleGoals.Count - 1);
+					newRoom = ResourceLoader.Load<PackedScene>("res://Scenes/" + currentLevel + "/" + possibleGoals[index]).Instantiate<Node3D>();
+					foreach((Guid guid, Node3D room) in rooms){
+						if(room.Name == newRoom.Name){
+							newRoom.QueueFree();
+							index = rng.RandiRange(0, possibleLevels.Count - 1);
+							newRoom = ResourceLoader.Load<PackedScene>("res://Scenes/" + currentLevel + "/" + possibleLevels[index]).Instantiate<Node3D>();
+							break;
+						}
+					}
+					break;
+				}
+				goto default;
+			}
+			default:
+			{
 				int index = rng.RandiRange(0, possibleLevels.Count - 1);
 				newRoom = ResourceLoader.Load<PackedScene>("res://Scenes/" + currentLevel + "/" + possibleLevels[index]).Instantiate<Node3D>();
 				break;
 			}
-			default:
-			{
-				int index = rng.RandiRange(0, possibleGoals.Count - 1);
-				newRoom = ResourceLoader.Load<PackedScene>("res://Scenes/" + currentLevel + "/" + possibleGoals[index]).Instantiate<Node3D>();
-				foreach((Guid guid, Node3D room) in rooms){
-					if(room.Name == newRoom.Name){
-						newRoom.QueueFree();
-						index = rng.RandiRange(0, possibleLevels.Count - 1);
-						newRoom = ResourceLoader.Load<PackedScene>("res://Scenes/" + currentLevel + "/" + possibleLevels[index]).Instantiate<Node3D>();
-						break;
-					}
-				}
-				break;
-			}
 		}
+		newRoom.Position = new Vector3(rng.Randf() * 10000.0f, rng.Randf() * 10000.0f, rng.Randf() * 10000.0f);
 		Guid newGuid = Guid.NewGuid();
 		rooms.Add((newGuid, newRoom));
 		Godot.Collections.Dictionary dict = new Godot.Collections.Dictionary

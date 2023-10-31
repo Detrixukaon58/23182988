@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnnm4sofme3g8"]
+
+[ext_resource type="PackedScene" uid="uid://1ky5hv50vc0a" path="res://Prefabs/Doors/Door_Small.tscn" id="1_7ls6o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gr2gm"]
+flip_faces = true
+size = Vector3(20, 20, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ba0j2"]
+size = Vector3(1, 21.75, 41.75)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gonn3"]
+size = Vector3(22.75, 23, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kabsy"]
+size = Vector3(20.5, 1, 42.25)
+
+[node name="Room1" type="Node3D"]
+
+[node name="Door_Small" parent="." instance=ExtResource("1_7ls6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="RoomMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 1, 0, 0, 0, 0.3, 0, 10, 0)
+mesh = SubResource("BoxMesh_gr2gm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RoomMesh"]
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="RoomMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 0)
+shape = SubResource("BoxShape3D_ba0j2")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RoomMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, 0)
+shape = SubResource("BoxShape3D_ba0j2")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="RoomMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.5)
+shape = SubResource("BoxShape3D_gonn3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RoomMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20.5)
+shape = SubResource("BoxShape3D_gonn3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.5, 0)
+shape = SubResource("BoxShape3D_kabsy")

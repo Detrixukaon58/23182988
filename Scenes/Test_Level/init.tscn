@@ -53,4 +53,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 0
 [node name="DoorC" parent="." instance=ExtResource("1_cuead")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 0, 7.75)
 
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20.25, 0)
+light_energy = 3.298
+spot_range = 47.3278
+spot_angle = 70.2116
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("2_mmw2v")]

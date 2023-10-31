@@ -37,7 +37,7 @@ public partial class Door : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		DebugDraw3D.DrawArrowLine(Position + Vector3.Up, Position + Transform.Basis.Z + Vector3.Up, Colors.Red, 0.2f);
+		DebugDraw3D.DrawArrowLine(GlobalPosition + Vector3.Up, GlobalPosition + Transform.Basis.Z + Vector3.Up, Colors.Red, 0.2f);
 		if(OtherDoor != null){
 			bool isLooking = false;
 			if(GetTree().Root.FindChild("Player", true, false) is CharacterBody3D Player){
@@ -78,15 +78,15 @@ public partial class Door : Node3D
 		if(GetViewport().GetCamera3D() is Camera3D main && main != null){
 			// GD.Print(main.Name);
 			Vector3 xyPosition = new Vector3(main.GlobalPosition.X, 0.0f, main.GlobalPosition.Z);
-			Vector3 forward = Quaternion.FromEuler(new Vector3(0.0f, Vector3.Forward.SignedAngleTo(xyPosition - Position, Vector3.Up) , 0.0f)) * Vector3.Forward;
-			cam.Position = OtherDoor.Position - forward + Vector3.Up * 1.5f;
+			Vector3 forward = Quaternion.FromEuler(OtherDoor.Rotation) * Quaternion.FromEuler(-Rotation) * Quaternion.FromEuler(new Vector3(0.0f, Vector3.Forward.SignedAngleTo(xyPosition - GlobalPosition, Vector3.Up) , 0.0f)) * Vector3.Forward;
+			cam.Position = OtherDoor.GlobalPosition - forward + Vector3.Up * 1.5f;
 				// + Vector3.Forward * (main.GlobalPosition.Z - Position.Z) - Vector3.Right * (main.GlobalPosition.X - Position.X)
 				;
 
 			float pitch = Mathf.Pi / 2.0f - (main.GlobalPosition - Vector3.Up - Position).SignedAngleTo(xyPosition - main.GlobalPosition + Vector3.Up, Vector3.Right);
 			// GD.Print(main.GlobalRotation);
-			cam.Rotation = (new Quaternion(
-				Vector3.Up, Vector3.Forward.SignedAngleTo((xyPosition - Position + Transform.Basis.Z * 1.0f).Normalized(), Vector3.Up) 
+			cam.Rotation = (Quaternion.FromEuler(OtherDoor.Rotation) * Quaternion.FromEuler(-Rotation) * new Quaternion(
+				Vector3.Up, Vector3.Forward.SignedAngleTo((xyPosition - GlobalPosition + Transform.Basis.Z * 1.0f).Normalized(), Vector3.Up) 
 				)).GetEuler();
 		}
 	}
@@ -130,8 +130,8 @@ public partial class Door : Node3D
 	public void Teleport(Node3D body){
 		if(body.Name == "Player" || body.IsInGroup("Player")){
 			if((isOpen || OtherDoor.isOpen) && !OtherDoor.hasTellop){
-				body.Position = OtherDoor.Position + Vector3.Up;
-				body.GlobalRotate(Vector3.Up, body.Rotation.Y - Rotation.Y + Mathf.Pi);
+				body.GlobalPosition = OtherDoor.GlobalPosition + Vector3.Up;
+				body.GlobalRotation = OtherDoor.GlobalRotation + (body.GlobalRotation - Rotation + Vector3.Up * Mathf.Pi);
 				GD.Print(body.Rotation.Y - Rotation.Y + Mathf.Pi);
 				GD.Print(body.Rotation);
 				hasTellop = true;
