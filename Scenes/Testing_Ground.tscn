@@ -31,7 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 0.593967, 0.80449, 0, -0.80449, 0.593967, 0,
 directional_shadow_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_n7ilk")]
-transform = Transform3D(-4.37114e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37114e-08, 1.56208, 0.787462, 29.7877)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 4, 0.787, 31.6356)
 
 [node name="Enemy" parent="." instance=ExtResource("3_dutbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.89816, -9.53674e-07, 4.73138)
@@ -42,16 +42,10 @@ viewDepth = 10.0
 [node name="BRICK2" parent="." instance=ExtResource("1_lg20k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.84474, 1.67451, 41.3177)
 
-[node name="door A" parent="." node_paths=PackedStringArray("OtherDoor") instance=ExtResource("4_urvn6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.26426, 0, 29.1262)
-visibility_parent = NodePath("../PlaneBody/PlaneMesh")
-OtherDoor = NodePath("../door B")
-isOpen = true
-hasTellop = true
+[node name="doorA" parent="." node_paths=PackedStringArray("OtherDoor") instance=ExtResource("4_urvn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 29)
+OtherDoor = NodePath("../doorB")
 
-[node name="door B" parent="." node_paths=PackedStringArray("OtherDoor") instance=ExtResource("4_urvn6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.45316, -0.134689, 29.1289)
-visibility_parent = NodePath("../PlaneBody/PlaneMesh")
-OtherDoor = NodePath("../door A")
-isOpen = true
-hasTellop = true
+[node name="doorB" parent="." node_paths=PackedStringArray("OtherDoor") instance=ExtResource("4_urvn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 29)
+OtherDoor = NodePath("../doorA")

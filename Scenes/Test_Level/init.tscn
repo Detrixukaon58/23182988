@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccg4f35r6376j"]
+
+[ext_resource type="PackedScene" uid="uid://1ky5hv50vc0a" path="res://Prefabs/Doors/Door_Small.tscn" id="1_cuead"]
+[ext_resource type="PackedScene" uid="uid://cm1a2s47xok0q" path="res://Prefabs/player.tscn" id="2_mmw2v"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lj35a"]
+flip_faces = true
+size = Vector3(20, 20, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ibxfp"]
+size = Vector3(1, 21.75, 41.75)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mfh8j"]
+size = Vector3(22.75, 23, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ac44y"]
+size = Vector3(20.5, 1, 42.25)
+
+[node name="init" type="Node3D"]
+
+[node name="RoomMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+mesh = SubResource("BoxMesh_lj35a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RoomMesh"]
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="RoomMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 0)
+shape = SubResource("BoxShape3D_ibxfp")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RoomMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, 0)
+shape = SubResource("BoxShape3D_ibxfp")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="RoomMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.5)
+shape = SubResource("BoxShape3D_mfh8j")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RoomMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20.5)
+shape = SubResource("BoxShape3D_mfh8j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.5, 0)
+shape = SubResource("BoxShape3D_ac44y")
+
+[node name="DoorA" parent="." instance=ExtResource("1_cuead")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="DoorB" parent="." instance=ExtResource("1_cuead")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 0, -8.25)
+
+[node name="DoorC" parent="." instance=ExtResource("1_cuead")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 0, 7.75)
+
+[node name="Player" parent="." instance=ExtResource("2_mmw2v")]

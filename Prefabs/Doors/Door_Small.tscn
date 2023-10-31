@@ -15,11 +15,11 @@ size = Vector3(1.5, 1, 2.75)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ilphg"]
 size = Vector3(1, 2.5, 0.25)
 
-[node name="Door_Small" type="Node3D"]
+[node name="Door_Small" type="Node3D" groups=["Doors"]]
 script = ExtResource("1_08eg7")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.5, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.5, 0.1)
 layers = 4
 texture = SubResource("ViewportTexture_kghi7")
 
@@ -51,9 +51,15 @@ shape = SubResource("BoxShape3D_dtme3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 shape = SubResource("BoxShape3D_ilphg")
 
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49628, 0)
+aabb = AABB(-0.772575, -1.50776, -0.201322, 1.54515, 3.01551, 0.402644)
+
 [connection signal="body_entered" from="Area3D" to="." method="BodyEnter"]
 [connection signal="body_exited" from="Area3D" to="." method="BodyExit"]
 [connection signal="body_entered" from="Telep" to="." method="Teleport"]
 [connection signal="body_exited" from="Telep" to="." method="TeleportExit"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="Visible"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="Invisible"]
 
 [editable path="Door"]

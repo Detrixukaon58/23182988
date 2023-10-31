@@ -1,26 +1,38 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-public partial class RoomManager : Node
+public partial class RoomManager : Node3D
 {
 
 	List<(Guid, Node3D)> rooms;
 
 	[Export] string currentLevel;
+
+	private static RoomManager currrentInstance;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-
+		rooms = new List<(Guid, Node3D)>();
+		#if DEBUG
+			string scene_path = GetTree().CurrentScene.SceneFilePath;
+			currentLevel = new FileInfo(scene_path).Directory.Name;
+			rooms.Add((Guid.NewGuid(), (Node3D)GetTree().CurrentScene));
+		#endif
+		currrentInstance = this;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
+
 	}
 
+	public static RoomManager GetCurrentInstance(){
+		return currrentInstance;
+	}
 
 	public void LoadLevel(string levelName) {
 		if(ResourceLoader.Load("res://Scenes/" + levelName + "/init.tscn") is PackedScene scene){
@@ -43,6 +55,67 @@ public partial class RoomManager : Node
 			}
 		}
 		return null;
+	}
+
+	private Array<Node3D> GetChildrenInGroup(Node3D parent, string group){
+		Array<Node3D> children = new Array<Node3D>();
+		foreach(Node3D child in parent.GetChildren()){
+			if(child.IsInGroup(group)){
+				children.Add(child);
+			}
+		}
+		return children;
+	}
+
+	public Node3D GetDoor() {
+		Node3D result = null; // THIS CANNOT BE NULL AFTER THIS FUNCTION IS RUN!!!
+		RandomNumberGenerator rng = new RandomNumberGenerator();
+		int choice = rng.RandiRange(0, 1);
+
+		switch(choice){
+			case 0: // Previous Room
+			{
+				if(rooms.Count != 0){
+					int room_index = rng.RandiRange(0, rooms.Count - 1);
+					Node3D room = rooms[room_index].Item2;
+					Array<Node3D> doors = GetChildrenInGroup(room, "Doors");
+					if(doors.Count != 0){
+						int door_index = rng.RandiRange(0, doors.Count - 1);
+
+						result = doors[door_index];
+						break;
+					}
+				}
+				goto default;
+			}
+
+			default: // New Room
+			{
+				// Load The new room
+				Node3D room = (Node3D)GetRoom()["room"];
+				GetTree().CurrentScene.AddChild(room);
+				Array<Node3D> doors = GetChildrenInGroup(room, "Doors");
+				int door_index = rng.RandiRange(0, doors.Count - 1);
+				result = doors[door_index];
+				break;
+			}
+		}
+		while(result == null){
+			int room_index = rng.RandiRange(0, rooms.Count - 1);
+			Node3D room = rooms[room_index].Item2;
+			Array<Node3D> doors = GetChildrenInGroup(room, "Doors");
+			if(doors.Count != 0){
+				int door_index = rng.RandiRange(0, doors.Count - 1);
+
+				result = doors[door_index];
+				break;
+			}
+			else{
+				// Cannnot possibly find another door for us to go through!!
+				break;
+			}
+		}
+		return result;
 	}
 
 	// Loads a new room for us to enter!!
