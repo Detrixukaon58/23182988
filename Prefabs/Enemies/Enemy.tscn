@@ -114,7 +114,7 @@ graph_offset = Vector2(-113, 92)
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_q0qdp")
 attackSpd = 5.0
-atackPwr = null
+attackPwr = 10.0
 movementSpd = 2.5
 isLarge = false
 viewAngle = 45.0
@@ -128,24 +128,23 @@ shape = SubResource("CapsuleShape3D_40nxp")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Zambino/metarig" index="0"]
-bones/0/position = Vector3(0.415616, 0.5372, 0.483921)
+bones/0/position = Vector3(0.415472, 0.5372, 0.483985)
 bones/1/position = Vector3(-0.341799, 0.5372, 0.453822)
-bones/2/position = Vector3(0.404966, 0.0852, -0.0239972)
+bones/2/position = Vector3(0.231757, 0.0852, -0.0162)
 bones/3/position = Vector3(-0.231757, 0.0852, -0.0162)
-bones/5/position = Vector3(0.000192402, 0.789898, -0.054193)
-bones/5/rotation = Quaternion(0.125917, 3.83096e-05, -3.62878e-05, 0.992041)
-bones/7/rotation = Quaternion(0.0282433, 0, 0, 0.999601)
+bones/5/position = Vector3(9.09557e-05, 0.789898, -0.054278)
+bones/5/rotation = Quaternion(0.125866, 1.81104e-05, -1.71545e-05, 0.992047)
+bones/7/rotation = Quaternion(0.0469726, 0, 0, 0.998896)
 bones/12/rotation = Quaternion(-0.401697, -0.498047, -0.510237, 0.574671)
-bones/13/rotation = Quaternion(0.461324, 0.514675, -0.33633, 0.639665)
+bones/13/rotation = Quaternion(0.473374, 0.529573, -0.285368, 0.643455)
 bones/16/rotation = Quaternion(-0.401697, 0.498047, 0.510237, 0.574671)
-bones/17/rotation = Quaternion(0.461324, -0.514675, 0.33633, 0.639665)
-bones/24/rotation = Quaternion(0.870872, 0.119452, -0.216599, 0.424734)
+bones/17/rotation = Quaternion(0.473374, -0.529573, 0.285368, 0.643455)
+bones/24/rotation = Quaternion(0.870874, 0.119479, -0.216475, 0.424785)
 bones/25/rotation = Quaternion(0.630869, 0.00912776, -0.00621053, 0.775811)
-bones/26/rotation = Quaternion(-0.767392, 0.023495, -0.0468037, 0.639035)
-bones/29/rotation = Quaternion(0.882349, -0.111577, 0.168416, 0.425026)
-bones/30/rotation = Quaternion(0.630712, -0.00912924, 0.006209, 0.775939)
-bones/31/rotation = Quaternion(-0.765115, -0.035001, 0.0014821, 0.64294)
-
+bones/26/rotation = Quaternion(-0.767328, 0.0235338, -0.0466552, 0.639122)
+bones/29/rotation = Quaternion(0.882346, -0.111495, 0.168358, 0.425077)
+bones/30/rotation = Quaternion(0.630795, -0.00912845, 0.00620982, 0.775872)
+bones/31/rotation = Quaternion(-0.765106, -0.0349432, 0.00156864, 0.642953)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_ih6s6")

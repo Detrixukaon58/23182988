@@ -71,6 +71,7 @@ func _input(event):
 		
 func die():
 	print("M⍉RTIS")
+	get_tree().reload_current_scene()
 
 func hurt(amount: int = 0):
 	health -= amount;

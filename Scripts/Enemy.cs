@@ -180,13 +180,13 @@ public partial class Enemy : CharacterBody3D
 	
 	public void die()
 	{
-		return;
+		QueueFree();
 	}
 	
 	public void hurt(int amount)
 	{
 		health -= amount;
-		if (health < 0)
+		if (health <= 0)
 		{
 			die();
 		}
