@@ -95,8 +95,10 @@ public partial class RoomManager : Node3D
 				Node3D room = (Node3D)GetRoom()["room"];
 				GetTree().CurrentScene.AddChild(room);
 				Array<Node3D> doors = GetChildrenInGroup(room, "Doors");
-				int door_index = rng.RandiRange(0, doors.Count - 1);
-				result = doors[door_index];
+				if(doors.Count != 0){
+					int door_index = rng.RandiRange(0, doors.Count - 1);
+					result = doors[door_index];
+				}
 				break;
 			}
 		}
@@ -172,7 +174,7 @@ public partial class RoomManager : Node3D
 				break;
 			}
 		}
-		newRoom.Position = new Vector3(rng.Randf() * 10000.0f, rng.Randf() * 10000.0f, rng.Randf() * 10000.0f);
+		newRoom.Position = new Vector3(rng.Randf() * 1000.0f, rng.Randf() * 1000.0f, rng.Randf() * 1000.0f);
 		Guid newGuid = Guid.NewGuid();
 		rooms.Add((newGuid, newRoom));
 		Godot.Collections.Dictionary dict = new Godot.Collections.Dictionary

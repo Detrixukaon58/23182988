@@ -9,7 +9,7 @@ public partial class Door : Node3D
 	[Export] bool isOpen;
 
 	SubViewport viewport;
-	Sprite3D tex;
+	MeshInstance3D tex;
 
 	Camera3D cam;
 
@@ -24,8 +24,8 @@ public partial class Door : Node3D
 	public override void _Ready()
 	{
 		viewport = GetNode<SubViewport>("SubViewport");
-		tex = GetNode<Sprite3D>("Sprite3D");
-		cam = viewport.GetCamera3D();
+		tex = GetNode<MeshInstance3D>("Sprite3D");
+		cam = viewport.GetNode<Camera3D>("InteriorCamera");
 		coollBox = GetNode<Area3D>("Area3D");
 		if( OtherDoor != null) {
 			// tex.Texture = OtherDoor.viewport.GetTexture();
@@ -48,7 +48,9 @@ public partial class Door : Node3D
 					isLooking = true;
 				}
 			}
-
+			if(cam == null){
+				cam = viewport.GetNode<Camera3D>("InteriorCamera");
+			}
 			if(isLooking){
 				if(!cam.Current){
 					cam.MakeCurrent();
@@ -79,16 +81,17 @@ public partial class Door : Node3D
 		if(GetViewport().GetCamera3D() is Camera3D main && main != null){
 			// GD.Print(main.Name);
 			Vector3 xyPosition = new Vector3(main.GlobalPosition.X, 0.0f, main.GlobalPosition.Z);
-			Vector3 forward = Quaternion.FromEuler(OtherDoor.Rotation) * Quaternion.FromEuler(-Rotation) * Quaternion.FromEuler(new Vector3(0.0f, Vector3.Forward.SignedAngleTo(xyPosition - GlobalPosition, Vector3.Up) , 0.0f)) * Vector3.Forward;
-			cam.Position = OtherDoor.GlobalPosition - forward + Vector3.Up * 1.5f;
-				// + Vector3.Forward * (main.GlobalPosition.Z - Position.Z) - Vector3.Right * (main.GlobalPosition.X - Position.X)
-				;
-
-			float pitch = Mathf.Pi / 2.0f - (main.GlobalPosition - Vector3.Up - Position).SignedAngleTo(xyPosition - main.GlobalPosition + Vector3.Up, Vector3.Right);
-			// GD.Print(main.GlobalRotation);
-			cam.Rotation = (Quaternion.FromEuler(OtherDoor.Rotation) * Quaternion.FromEuler(-Rotation) * new Quaternion(
-				Vector3.Up, Vector3.Forward.SignedAngleTo((xyPosition - GlobalPosition + Transform.Basis.Z * 1.0f).Normalized(), Vector3.Up) 
-				)).GetEuler();
+			Vector3 forward = Quaternion.FromEuler(OtherDoor.Rotation) 
+				* Quaternion.FromEuler(-Rotation) 
+				* Quaternion.FromEuler(Vector3.Up * Vector3.Forward.SignedAngleTo(xyPosition - new Vector3(GlobalPosition.X, 0.0f, GlobalPosition.Z), Vector3.Up))
+				* Vector3.Forward;
+			cam.Position = OtherDoor.GlobalPosition - forward * (xyPosition - new Vector3(GlobalPosition.X, 0.0f, GlobalPosition.Z)).Length() + Vector3.Up 
+				* (main.GlobalPosition.Y - GlobalPosition.Y);
+			cam.Rotation = (Quaternion.FromEuler(OtherDoor.Rotation) 
+				* Quaternion.FromEuler(-Rotation) 
+				* Quaternion.FromEuler(new Vector3(0.0f, main.GlobalRotation.Y, 0.0f)) 
+				* Quaternion.FromEuler(new Vector3(-main.GlobalRotation.X, 0.0f, -main.GlobalRotation.Z))
+				* new Quaternion(Vector3.Up, Mathf.Pi)).GetEuler();
 		}
 	}
 
@@ -103,7 +106,7 @@ public partial class Door : Node3D
 							// need to create a new rom or select a room thats been used before
 							// Use GetDooor from RoomManager
 							OtherDoor = (Door)RoomManager.GetCurrentInstance().GetDoor();
-							while(OtherDoor == this && !canSelfReflect){
+							while((OtherDoor == this || OtherDoor == null) && !canSelfReflect){
 								OtherDoor = (Door)RoomManager.GetCurrentInstance().GetDoor();
 							}
 							if(OtherDoor.OtherDoor == null){

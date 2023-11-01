@@ -9,6 +9,7 @@
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+layers = 4
 mesh = SubResource("BoxMesh_62mg7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]

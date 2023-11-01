@@ -1,0 +1,6 @@
+[gd_resource type="Sky" load_steps=2 format=3 uid="uid://byay7atrn8jl1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_njpv4"]
+
+[resource]
+sky_material = SubResource("ProceduralSkyMaterial_njpv4")

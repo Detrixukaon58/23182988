@@ -1,10 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://1ky5hv50vc0a"]
+[gd_scene load_steps=11 format=3 uid="uid://1ky5hv50vc0a"]
 
 [ext_resource type="Script" path="res://Scripts/Door.cs" id="1_08eg7"]
 [ext_resource type="PackedScene" uid="uid://dct8qbeims7tk" path="res://Models/Door.glb" id="2_oegnq"]
+[ext_resource type="Shader" path="res://Shaders/portal.gdshader" id="2_ugt5k"]
+[ext_resource type="Environment" uid="uid://dgu8drmmf1lq8" path="res://Prefabs/environment.tres" id="3_nst0v"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_kghi7"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_btqr5"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3tfg7"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_ugt5k")
+shader_parameter/render_texture = SubResource("ViewportTexture_btqr5")
+
+[sub_resource type="QuadMesh" id="QuadMesh_etiao"]
+size = Vector2(3, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tigg6"]
 size = Vector3(2, 3.96513, 0.371834)
@@ -18,10 +29,11 @@ size = Vector3(1, 2.5, 0.25)
 [node name="Door_Small" type="Node3D" groups=["Doors"]]
 script = ExtResource("1_08eg7")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Sprite3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.5, 0.1)
 layers = 4
-texture = SubResource("ViewportTexture_kghi7")
+material_override = SubResource("ShaderMaterial_3tfg7")
+mesh = SubResource("QuadMesh_etiao")
 
 [node name="Door" parent="." instance=ExtResource("2_oegnq")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 1, -0.75, 0, 0)
@@ -33,11 +45,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
 shape = SubResource("BoxShape3D_tigg6")
 
 [node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(300, 600)
+size = Vector2i(1920, 1080)
 
 [node name="InteriorCamera" type="Camera3D" parent="SubViewport"]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 1.5, -3)
 cull_mask = 9
+environment = ExtResource("3_nst0v")
+current = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/InteriorCamera"]
 layers = 8

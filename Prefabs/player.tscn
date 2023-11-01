@@ -1,20 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm1a2s47xok0q"]
+[gd_scene load_steps=7 format=3 uid="uid://cm1a2s47xok0q"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_6sy4w"]
 [ext_resource type="PackedScene" uid="uid://bksa47bk3s2ke" path="res://Models/Player_1st.glb" id="2_ao41q"]
+[ext_resource type="Environment" uid="uid://dgu8drmmf1lq8" path="res://Prefabs/environment.tres" id="2_goyuf"]
 [ext_resource type="PackedScene" uid="uid://dowldn2ew7187" path="res://Prefabs/gun/gun.tscn" id="3_nvcqj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hkwan"]
-
-[sub_resource type="Sky" id="Sky_qvwa7"]
-
-[sub_resource type="Environment" id="Environment_wbwhu"]
-sky = SubResource("Sky_qvwa7")
-sky_custom_fov = 75.0
-ambient_light_color = Color(0.8, 0.8, 0.8, 1)
-ambient_light_energy = 0.3
-volumetric_fog_density = 0.1245
-volumetric_fog_albedo = Color(0, 0, 0, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tnowq"]
 viewport_path = NodePath("SubViewport")
@@ -30,7 +21,7 @@ shape = SubResource("CapsuleShape3D_hkwan")
 [node name="PlayerCam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 cull_mask = 997
-environment = SubResource("Environment_wbwhu")
+environment = ExtResource("2_goyuf")
 current = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
@@ -47,6 +38,7 @@ size = Vector2i(1280, 720)
 [node name="UICamera3D" type="Camera3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 cull_mask = 2
+environment = ExtResource("2_goyuf")
 current = true
 
 [node name="Player_1st" parent="SubViewport/UICamera3D" groups=["Player"] instance=ExtResource("2_ao41q")]
