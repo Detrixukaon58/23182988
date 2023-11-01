@@ -3,11 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-<<<<<<< HEAD
-uid="uid://ddk4d5i1boalp"
-=======
-uid="uid://cuucbvjuuq5h8"
->>>>>>> c871fbc94a00765ca87014f69187520a3b97a16d
+uid="uid://bvlcybdvx27b2"
 path="res://.godot/imported/L shape room.glb-20d54573aadcdfb53e2dbdc16b5c5b72.scn"
 
 [deps]

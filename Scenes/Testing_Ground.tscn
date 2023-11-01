@@ -36,7 +36,11 @@ transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 5.48929, 0.787,
 
 [node name="Enemy" parent="." instance=ExtResource("3_dutbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.89816, -9.53674e-07, 4.73138)
+<<<<<<< HEAD
 attackPwr = 10.0
+=======
+attackPwr = 0.0
+>>>>>>> 6fc4eb887a8373eb6641002d05e08e007c08f8da
 movementSpd = 5.0
 viewDepth = 10.0
 

@@ -21,6 +21,7 @@ size = Vector3(20.5, 1, 42.25)
 
 [node name="Enemy" parent="." instance=ExtResource("1_841ev")]
 transform = Transform3D(6.70552e-08, 0, -1, 0, 1, 0, 1, 0, 6.70552e-08, -3.49614, 0.189391, -4.5797)
+attackPwr = 0.0
 movementSpd = 5.0
 viewDepth = 10.0
 
