@@ -98,7 +98,7 @@ public partial class Enemy : CharacterBody3D
 		SphereShape3D shape = new SphereShape3D();
 		shape.Radius = viewDepth;
 		qParams.ShapeRid = shape.GetRid();
-		qParams.Transform = Transform;
+		qParams.Transform = GlobalTransform;
 
 		var results = GetWorld3D().DirectSpaceState.IntersectShape(qParams);
 		
@@ -109,7 +109,7 @@ public partial class Enemy : CharacterBody3D
 				// GD.Print(result);
 				if((Node)result["collider"] is CharacterBody3D rb && rb.Name == "Player"){
 					
-					Vector3 direction = (rb.Position - Position - Vector3.Up).Normalized();
+					Vector3 direction = (rb.GlobalPosition - GlobalPosition - Vector3.Up).Normalized();
 					// GD.Print(Mathf.Abs((Transform.Basis.Z).AngleTo(direction)));
 					if(Mathf.Abs((-Transform.Basis.Z).AngleTo(direction)) <= Mathf.DegToRad(viewAngle)){
 						ForwardCheck.Position = Vector3.Up;
@@ -128,7 +128,7 @@ public partial class Enemy : CharacterBody3D
 
 		if(targetLossTimer > 0.0f && target != null){
 			targetLossTimer -= (float) delta;
-			Vector3 direction = (target.Position - Position - Vector3.Up).Normalized();
+			Vector3 direction = (target.GlobalPosition - GlobalPosition - Vector3.Up).Normalized();
 			Velocity = direction * movementSpd;
 			
 			MoveAndSlide();
@@ -147,8 +147,8 @@ public partial class Enemy : CharacterBody3D
 			isMoving = false;
 			anim.Set("attacking", false);
 		}
-		DebugDraw3D.DrawSphere(Position, viewDepth, Colors.Aqua);
-		DebugDraw3D.DrawArrowLine(Position + Vector3.Up, Position + -Transform.Basis.Z + Vector3.Up, Colors.Red);
+		DebugDraw3D.DrawSphere(GlobalPosition, viewDepth, Colors.Aqua);
+		DebugDraw3D.DrawArrowLine(GlobalPosition + Vector3.Up, GlobalPosition + -Transform.Basis.Z + Vector3.Up, Colors.Red);
 		anim.Set("moving", isMoving);
 	}
 

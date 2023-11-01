@@ -67,6 +67,33 @@ public partial class RoomManager : Node3D
 		return children;
 	}
 
+	/// <summary>
+	/// Creates a room andd returns a door to that room
+	/// THE ROOM MUST HAVE A DOOR OR NULL IS RETURNED!!!
+	/// </summary>
+	/// <param name="scene"></param>
+	/// <returns></returns>
+	public Node3D SpawnRoom(PackedScene scene){
+		Node3D result = null; // THIS CANNOT BE NULL AFTER THIS FUNCTION IS RUN!!!
+		RandomNumberGenerator rng = new RandomNumberGenerator();
+		Node3D room = scene.Instantiate<Node3D>();
+		GetTree().CurrentScene.AddChild(room);
+		// Pick a Door - The room musst have a Door or this will crash!!!
+		Array<Node3D> doors = GetChildrenInGroup(room, "Doors");
+		if(doors.Count != 0){
+			int door_index = rng.RandiRange(0, doors.Count - 1);
+
+			result = doors[door_index];
+			
+		}
+		room.SetProcess(true);
+		room.SetPhysicsProcess(true);
+		room.Position = new Vector3(rng.Randf() * 1000.0f, rng.Randf() * 1000.0f, rng.Randf() * 1000.0f);
+		rooms.Add((Guid.NewGuid(), room));
+
+		return result;
+
+	}
 	public Node3D GetDoor() {
 		Node3D result = null; // THIS CANNOT BE NULL AFTER THIS FUNCTION IS RUN!!!
 		RandomNumberGenerator rng = new RandomNumberGenerator();
