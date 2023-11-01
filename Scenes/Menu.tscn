@@ -12,6 +12,7 @@ offset_right = 0.543945
 offset_bottom = 1.0
 
 [node name="Button" type="Button" parent="MenuUI"]
+layout_mode = 0
 offset_left = 480.0
 offset_top = 333.0
 offset_right = 697.0

@@ -1,10 +1,16 @@
-[gd_scene load_steps=27 format=3 uid="uid://df2j4w1ynvlyh"]
+[gd_scene load_steps=29 format=3 uid="uid://mevc0t3mssmg"]
 
 [ext_resource type="Script" path="res://Scripts/Civilian.cs" id="1_oo2dm"]
 [ext_resource type="PackedScene" uid="uid://d1ehpw0crkqea" path="res://Models/Zambino.glb" id="2_7mkg6"]
 [ext_resource type="Script" path="res://Prefabs/Enemies/BaseExpressionVariables.gd" id="3_f3rtc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_40nxp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbe1i"]
+albedo_color = Color(0.423529, 0.572549, 0.219608, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7jc1"]
+albedo_color = Color(0.490196, 0.603922, 0, 1)
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_mftq0"]
 filter_enabled = true
@@ -111,19 +117,11 @@ states/Start/position = Vector2(147, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_vs072"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_xewm6"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_2iqkq")]
 graph_offset = Vector2(-94, 83)
 
-<<<<<<< HEAD:Prefabs/Enemies/Enemy.tscn
-[node name="Enemy" type="CharacterBody3D"]
-script = ExtResource("1_q0qdp")
-attackSpd = 5.0
-attackPwr = 10.0
-movementSpd = 2.5
-isLarge = false
-viewAngle = 45.0
-viewDepth = 5.0
-=======
 [node name="Civilian" type="CharacterBody3D"]
 script = ExtResource("1_oo2dm")
->>>>>>> 9bc3790742b5d78b8832726f9628f48d92b2b331:Prefabs/Enemies/Civilian.tscn
+movementSpd = 10.0
+viewAngle = 45.0
+viewDepth = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -133,43 +131,27 @@ shape = SubResource("CapsuleShape3D_40nxp")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Zambino/metarig" index="0"]
-<<<<<<< HEAD:Prefabs/Enemies/Enemy.tscn
-bones/0/position = Vector3(0.416207, 0.5372, 0.483655)
+bones/0/position = Vector3(0.505446, 0.5372, 0.443539)
 bones/1/position = Vector3(-0.341799, 0.5372, 0.453822)
-bones/2/position = Vector3(0.231757, 0.0852, -0.0162)
+bones/2/position = Vector3(0.417966, 0.0852, -0.0245824)
 bones/3/position = Vector3(-0.231757, 0.0852, -0.0162)
-bones/5/position = Vector3(0.000607732, 0.789898, -0.0538451)
-bones/5/rotation = Quaternion(0.126055, 9.2266e-05, -8.73964e-05, 0.992023)
-bones/7/rotation = Quaternion(0.057825, 0, 0, 0.998327)
+bones/5/position = Vector3(0.0633243, 0.789898, -0.00130923)
+bones/5/rotation = Quaternion(0.150138, 0.00955728, -0.0090529, 0.988577)
+bones/7/rotation = Quaternion(0.0289668, 6.05768e-10, 1.73864e-10, 0.99958)
 bones/12/rotation = Quaternion(-0.401697, -0.498047, -0.510237, 0.574671)
-bones/13/rotation = Quaternion(0.479715, 0.537488, -0.25543, 0.644775)
+bones/13/rotation = Quaternion(0.461815, 0.515279, -0.334382, 0.639847)
 bones/16/rotation = Quaternion(-0.401697, 0.498047, 0.510237, 0.574671)
-bones/17/rotation = Quaternion(0.479715, -0.537488, 0.25543, 0.644775)
-bones/24/rotation = Quaternion(0.870864, 0.119343, -0.217107, 0.424521)
-bones/25/rotation = Quaternion(0.631159, 0.00912496, -0.00621339, 0.775575)
-bones/26/rotation = Quaternion(-0.767656, 0.0233365, -0.0474106, 0.63868)
-bones/29/rotation = Quaternion(0.882362, -0.111912, 0.168652, 0.424818)
-bones/30/rotation = Quaternion(0.630491, -0.00913136, 0.00620682, 0.776118)
-bones/31/rotation = Quaternion(-0.76515, -0.0352379, 0.0011278, 0.642887)
-=======
-bones/0/position = Vector3(0.423286, 0.5372, 0.480473)
-bones/1/position = Vector3(-0.341799, 0.5372, 0.453822)
-bones/2/position = Vector3(0.231757, 0.0852, -0.0162)
-bones/3/position = Vector3(-0.231757, 0.0852, -0.0162)
-bones/5/position = Vector3(0.00558275, 0.789898, -0.0496776)
-bones/5/rotation = Quaternion(0.126083, 0.000103255, -9.78056e-05, 0.99202)
-bones/7/rotation = Quaternion(0.0492992, 0, 0, 0.998784)
-bones/12/rotation = Quaternion(-0.401697, -0.498047, -0.510237, 0.574671)
-bones/13/rotation = Quaternion(0.474774, 0.531315, -0.278971, 0.643793)
-bones/16/rotation = Quaternion(-0.401697, 0.498047, 0.510237, 0.574671)
-bones/17/rotation = Quaternion(0.474774, -0.531315, 0.278971, 0.643793)
-bones/24/rotation = Quaternion(0.870757, 0.118047, -0.22321, 0.421929)
-bones/25/rotation = Quaternion(0.632013, 0.00911678, -0.0062218, 0.77488)
-bones/26/rotation = Quaternion(-0.770805, 0.021451, -0.0545959, 0.634365)
-bones/29/rotation = Quaternion(0.882499, -0.115925, 0.171484, 0.422315)
-bones/30/rotation = Quaternion(0.62957, -0.00914014, 0.00619776, 0.776865)
-bones/31/rotation = Quaternion(-0.765525, -0.0380806, -0.00312141, 0.642271)
->>>>>>> 9bc3790742b5d78b8832726f9628f48d92b2b331:Prefabs/Enemies/Civilian.tscn
+bones/17/rotation = Quaternion(0.461815, -0.515278, 0.334382, 0.639847)
+bones/24/rotation = Quaternion(0.866978, 0.196641, -0.204732, 0.409594)
+bones/25/rotation = Quaternion(0.593303, 0.00947004, -0.00584071, 0.804902)
+bones/26/rotation = Quaternion(-0.745979, 0.0998393, 0.110601, 0.649088)
+bones/29/rotation = Quaternion(0.87233, -0.153447, 0.223143, 0.407064)
+bones/30/rotation = Quaternion(0.61142, -0.00930916, 0.00601906, 0.791228)
+bones/31/rotation = Quaternion(-0.765865, -0.0734075, -0.0559953, 0.636339)
+
+[node name="Zambino2" parent="Zambino/metarig/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_hbe1i")
+material_overlay = SubResource("StandardMaterial3D_l7jc1")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_ih6s6")

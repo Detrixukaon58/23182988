@@ -140,6 +140,10 @@ afterPlayerCheck:
 		else{
 			anim.Set("attacking", false);
 		}
+
+		if(health <= 0.0f){
+			QueueFree();
+		}
 	}
 	
 	public void die()
