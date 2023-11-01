@@ -40,7 +40,7 @@ transitions = ["Start", "StateMachine", SubResource("AnimationNodeStateMachineTr
 graph_offset = Vector2(34, 22)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lm27v"]
-graph_offset = Vector2(-355.626, 6.70586)
+graph_offset = Vector2(-443, 87)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_mftq0")
 nodes/Add2/position = Vector2(100, 140)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_633fo")
@@ -82,7 +82,7 @@ transitions = ["Start", "StateMachine", SubResource("AnimationNodeStateMachineTr
 graph_offset = Vector2(-11, 25)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_orcyk"]
-graph_offset = Vector2(-338.094, -6.07355)
+graph_offset = Vector2(-324.995, 138.842)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_5xmb6")
 nodes/Add2/position = Vector2(160, 120)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_fejop")
@@ -114,7 +114,7 @@ graph_offset = Vector2(-113, 92)
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_q0qdp")
 attackSpd = 5.0
-atackPwr = null
+attackPwr = 10.0
 movementSpd = 2.5
 isLarge = false
 viewAngle = 45.0
@@ -128,24 +128,23 @@ shape = SubResource("CapsuleShape3D_40nxp")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Zambino/metarig" index="0"]
-bones/0/position = Vector3(0.415616, 0.5372, 0.483921)
+bones/0/position = Vector3(0.416207, 0.5372, 0.483655)
 bones/1/position = Vector3(-0.341799, 0.5372, 0.453822)
-bones/2/position = Vector3(0.404966, 0.0852, -0.0239972)
+bones/2/position = Vector3(0.231757, 0.0852, -0.0162)
 bones/3/position = Vector3(-0.231757, 0.0852, -0.0162)
-bones/5/position = Vector3(0.000192402, 0.789898, -0.054193)
-bones/5/rotation = Quaternion(0.125917, 3.83096e-05, -3.62878e-05, 0.992041)
-bones/7/rotation = Quaternion(0.0282433, 0, 0, 0.999601)
+bones/5/position = Vector3(0.000607732, 0.789898, -0.0538451)
+bones/5/rotation = Quaternion(0.126055, 9.2266e-05, -8.73964e-05, 0.992023)
+bones/7/rotation = Quaternion(0.057825, 0, 0, 0.998327)
 bones/12/rotation = Quaternion(-0.401697, -0.498047, -0.510237, 0.574671)
-bones/13/rotation = Quaternion(0.461324, 0.514675, -0.33633, 0.639665)
+bones/13/rotation = Quaternion(0.479715, 0.537488, -0.25543, 0.644775)
 bones/16/rotation = Quaternion(-0.401697, 0.498047, 0.510237, 0.574671)
-bones/17/rotation = Quaternion(0.461324, -0.514675, 0.33633, 0.639665)
-bones/24/rotation = Quaternion(0.870872, 0.119452, -0.216599, 0.424734)
-bones/25/rotation = Quaternion(0.630869, 0.00912776, -0.00621053, 0.775811)
-bones/26/rotation = Quaternion(-0.767392, 0.023495, -0.0468037, 0.639035)
-bones/29/rotation = Quaternion(0.882349, -0.111577, 0.168416, 0.425026)
-bones/30/rotation = Quaternion(0.630712, -0.00912924, 0.006209, 0.775939)
-bones/31/rotation = Quaternion(-0.765115, -0.035001, 0.0014821, 0.64294)
-
+bones/17/rotation = Quaternion(0.479715, -0.537488, 0.25543, 0.644775)
+bones/24/rotation = Quaternion(0.870864, 0.119343, -0.217107, 0.424521)
+bones/25/rotation = Quaternion(0.631159, 0.00912496, -0.00621339, 0.775575)
+bones/26/rotation = Quaternion(-0.767656, 0.0233365, -0.0474106, 0.63868)
+bones/29/rotation = Quaternion(0.882362, -0.111912, 0.168652, 0.424818)
+bones/30/rotation = Quaternion(0.630491, -0.00913136, 0.00620682, 0.776118)
+bones/31/rotation = Quaternion(-0.76515, -0.0352379, 0.0011278, 0.642887)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_ih6s6")

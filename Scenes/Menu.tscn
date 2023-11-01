@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq4c7c0428b4f"]
+
+[ext_resource type="Script" path="res://Scenes/Play.gd" id="1_sd0mm"]
+
+[node name="Menu" type="Node3D"]
+
+[node name="MenuUI" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 1.003
+anchor_bottom = 1.0
+offset_right = 0.543945
+offset_bottom = 1.0
+
+[node name="Button" type="Button" parent="MenuUI"]
+offset_left = 480.0
+offset_top = 333.0
+offset_right = 697.0
+offset_bottom = 392.0
+text = "PLAY
+"
+script = ExtResource("1_sd0mm")
+
+[connection signal="pressed" from="MenuUI/Button" to="MenuUI/Button" method="on_pressed"]

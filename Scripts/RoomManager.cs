@@ -39,9 +39,14 @@ public partial class RoomManager : Node3D
 			foreach((Guid guid, Node3D room) in rooms){
 				room.QueueFree();
 			}
+			Node3D newRoom = scene.Instantiate<Node3D>();
 			rooms.Clear();
-			rooms.Add((Guid.NewGuid(), scene.Instantiate<Node3D>()));
+			rooms.Add((Guid.NewGuid(), newRoom));
 			currentLevel = levelName;
+			AddChild(newRoom);
+			GD.Print(newRoom);
+			newRoom.SetPhysicsProcess(true);
+			newRoom.SetProcess(true);
 		}
 		else{
 			GD.PrintErr("Couldn't load scene " + levelName + ". Scene Either does not exist or has no init.tscn");
