@@ -13,7 +13,8 @@ public partial class Enemy : CharacterBody3D
 	#region Stats 
 	//Key stats for an enemy type (can be defined in seperate prefabs and loaded in quickly)
 	float attackSpd;
-	float attackPwr;
+	float attackPwr = 10.0f;
+	
 	float movementSpd;
 	
 	int maxHealth = 100;
@@ -35,6 +36,8 @@ public partial class Enemy : CharacterBody3D
 	bool isMoving;
 	Node3D target = null;
 	float targetLossTimer = 0.0f;
+	
+	float attackTmr;
 
 	float viewAngle;
 	float viewDepth;
@@ -125,7 +128,7 @@ public partial class Enemy : CharacterBody3D
 				}
 			}
 		}
-
+		
 		if(targetLossTimer > 0.0f && target != null){
 			targetLossTimer -= (float) delta;
 			Vector3 direction = (target.GlobalPosition - GlobalPosition - Vector3.Up).Normalized();
@@ -140,7 +143,12 @@ public partial class Enemy : CharacterBody3D
 			}
 			Vector3 dd = new Vector3(direction.X, 0.0f, direction.Z);
 			Rotation = new Vector3(0.0f, Vector3.Forward.SignedAngleTo(dd, Vector3.Up), 0.0f);
-			Attack();
+			if (attackTmr < 0.0f)
+			{
+				Attack();
+				attackTmr = attackSpd;
+			}
+			attackTmr -= (float) delta;
 		}
 		else{
 			Velocity = Vector3.Zero;
@@ -161,6 +169,7 @@ public partial class Enemy : CharacterBody3D
 			anim.Set("attacking", true);
 			if (ForwardCheck.GetCollider().HasMethod("hurt"))
 			{
+				((Node3D)ForwardCheck.GetCollider()).Call("hurt", attackPwr);
 				// i do nor know how to call the method in a way that doesnt make godot complain
 			}
 		}
