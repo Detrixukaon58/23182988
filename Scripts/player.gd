@@ -32,8 +32,6 @@ func _ready():
 	goreTracker = $UserInterface/HealthBar/GoreTracker;
 	healthBar.max_value = maxHealth;
 	goreTracker.visible = false;
-	
-	gun.setCam(uiCam)
 
 func _process(_delta):
 	uiCam.global_position = cam.global_position;
