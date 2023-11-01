@@ -47,7 +47,7 @@ public partial class Enemy : CharacterBody3D
 		Array<Dictionary> list = new Array<Dictionary>
 		{
 			PropEntry("attackSpd", Variant.Type.Float, PropertyHint.None),
-			PropEntry("atackPwr", Variant.Type.Float, PropertyHint.None),
+			PropEntry("attackPwr", Variant.Type.Float, PropertyHint.None),
 			PropEntry("movementSpd", Variant.Type.Float, PropertyHint.None),
 			PropEntry("isLarge", Variant.Type.Bool, PropertyHint.None),
 			PropEntry("viewAngle", Variant.Type.Float, PropertyHint.None),
