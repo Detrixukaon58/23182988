@@ -123,7 +123,7 @@ public partial class Door : Node3D
 							}
 						}
 
-						
+
 						if(OtherDoor.isOpen){
 							OtherDoor.isOpen = false;
 							isOpen = false;
@@ -148,7 +148,7 @@ public partial class Door : Node3D
 	public void Teleport(Node3D body){
 		if(body.Name == "Player" || body.IsInGroup("Player")){
 			if((isOpen || OtherDoor.isOpen) && !OtherDoor.hasTellop){
-				body.GlobalPosition = OtherDoor.GlobalPosition + Vector3.Up;
+				body.GlobalPosition = OtherDoor.GlobalPosition + Vector3.Up + OtherDoor.Transform.Basis.Z * 0.5f;
 				body.GlobalRotation = OtherDoor.GlobalRotation + (body.GlobalRotation - Rotation + Vector3.Up * Mathf.Pi);
 				GD.Print(body.Rotation.Y - Rotation.Y + Mathf.Pi);
 				GD.Print(body.Rotation);
