@@ -161,6 +161,7 @@ public partial class Enemy : CharacterBody3D
 			anim.Set("attacking", true);
 			if (ForwardCheck.GetCollider().HasMethod("hurt"))
 			{
+				((Node3D)ForwardCheck.GetCollider()).Call("hurt", attackPwr);
 				// i do nor know how to call the method in a way that doesnt make godot complain
 			}
 		}
