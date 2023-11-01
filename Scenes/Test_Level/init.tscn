@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccg4f35r6376j"]
+[gd_scene load_steps=9 format=3 uid="uid://ccg4f35r6376j"]
 
+[ext_resource type="PackedScene" uid="uid://cindpmnor1pi3" path="res://Prefabs/Enemies/Enemy.tscn" id="1_0l1cj"]
 [ext_resource type="PackedScene" uid="uid://1ky5hv50vc0a" path="res://Prefabs/Doors/Door_Small.tscn" id="1_cuead"]
 [ext_resource type="PackedScene" uid="uid://cm1a2s47xok0q" path="res://Prefabs/player.tscn" id="2_mmw2v"]
+[ext_resource type="PackedScene" uid="uid://bnnm4sofme3g8" path="res://Scenes/Test_Level/Room1.tscn" id="3_x7lmg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lj35a"]
 flip_faces = true
@@ -17,6 +19,9 @@ size = Vector3(22.75, 23, 1)
 size = Vector3(20.5, 1, 42.25)
 
 [node name="init" type="Node3D"]
+
+[node name="Enemy" parent="." instance=ExtResource("1_0l1cj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5)
 
 [node name="RoomMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
@@ -46,6 +51,7 @@ shape = SubResource("BoxShape3D_ac44y")
 
 [node name="DoorA" parent="." instance=ExtResource("1_cuead")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+setRoom = ExtResource("3_x7lmg")
 
 [node name="DoorB" parent="." instance=ExtResource("1_cuead")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 0, -8.25)

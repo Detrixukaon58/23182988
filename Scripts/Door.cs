@@ -20,6 +20,8 @@ public partial class Door : Node3D
 	[Export] bool hasTellop;
 	[Export] bool fetchesRoom = true;
 	[Export] bool canSelfReflect;
+
+	[Export] PackedScene setRoom;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -103,16 +105,25 @@ public partial class Door : Node3D
 					// GD.Print(Input.IsActionJustPressed("select"));
 					if(Input.IsActionJustPressed("select")){
 						if(OtherDoor == null){
-							// need to create a new rom or select a room thats been used before
-							// Use GetDooor from RoomManager
-							OtherDoor = (Door)RoomManager.GetCurrentInstance().GetDoor();
-							while((OtherDoor == this || OtherDoor == null) && !canSelfReflect){
-								OtherDoor = (Door)RoomManager.GetCurrentInstance().GetDoor();
-							}
-							if(OtherDoor.OtherDoor == null){
+							if(setRoom != null){
+								// We have a sspecific room set for this door - we will sspawn thhat room.
+								OtherDoor = (Door)RoomManager.GetCurrentInstance().SpawnRoom(setRoom);
 								OtherDoor.OtherDoor = this;
 							}
+							else{
+								// need to create a new rom or select a room thats been used before
+								// Use GetDooor from RoomManager
+								OtherDoor = (Door)RoomManager.GetCurrentInstance().GetDoor();
+								while((OtherDoor == this || OtherDoor == null) && !canSelfReflect){
+									OtherDoor = (Door)RoomManager.GetCurrentInstance().GetDoor();
+								}
+								if(OtherDoor.OtherDoor == null){
+									OtherDoor.OtherDoor = this;
+								}
+							}
 						}
+
+						
 						if(OtherDoor.isOpen){
 							OtherDoor.isOpen = false;
 							isOpen = false;

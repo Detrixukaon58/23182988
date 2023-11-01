@@ -8,11 +8,8 @@ extends Node3D
 @export var reloadSpeed: int = 1;
 
 @export var bulletDamage: int = 1;
-<<<<<<< HEAD
-@export var bulletDistance: float;
-=======
 @export var bulletDistance: float = 100.0;
->>>>>>> 7c81dbb90c0ea614423c07d26d83f4a02b441dbd
+
 
 const IDLE_ANIM_NAME = "Pistol_idle"
 const FIRE_ANIM_NAME = "Pistol_fire"

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnnm4sofme3g8"]
+[gd_scene load_steps=8 format=3 uid="uid://bnnm4sofme3g8"]
 
 [ext_resource type="PackedScene" uid="uid://1ky5hv50vc0a" path="res://Prefabs/Doors/Door_Small.tscn" id="1_7ls6o"]
+[ext_resource type="PackedScene" uid="uid://cindpmnor1pi3" path="res://Prefabs/Enemies/Enemy.tscn" id="1_841ev"]
 [ext_resource type="Texture2D" uid="uid://27g545vhsub8" path="res://Textures/whatsapp-car.jpg" id="2_wifhj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_gr2gm"]
@@ -17,6 +18,11 @@ size = Vector3(22.75, 23, 1)
 size = Vector3(20.5, 1, 42.25)
 
 [node name="Room1" type="Node3D"]
+
+[node name="Enemy" parent="." instance=ExtResource("1_841ev")]
+transform = Transform3D(6.70552e-08, 0, -1, 0, 1, 0, 1, 0, 6.70552e-08, -3.49614, 0.189391, -4.5797)
+movementSpd = 5.0
+viewDepth = 10.0
 
 [node name="RoomMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.6, 0, 0, 0, 1, 0, 0, 0, 0.3, 0, 10, 0)
