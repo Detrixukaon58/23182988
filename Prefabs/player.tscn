@@ -1,9 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://cm1a2s47xok0q"]
+[gd_scene load_steps=13 format=3 uid="uid://cm1a2s47xok0q"]
+
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_6sy4w"]
 [ext_resource type="PackedScene" uid="uid://bksa47bk3s2ke" path="res://Models/Player_1st.glb" id="2_ao41q"]
 [ext_resource type="Environment" uid="uid://dgu8drmmf1lq8" path="res://Prefabs/environment.tres" id="2_goyuf"]
 [ext_resource type="PackedScene" uid="uid://dowldn2ew7187" path="res://Prefabs/gun/gun.tscn" id="3_nvcqj"]
+[ext_resource type="Texture2D" uid="uid://dr8rwjhh642e4" path="res://Textures/crosshair.png" id="4_uvfk1"]
+[ext_resource type="Texture2D" uid="uid://c4f05odeihj4w" path="res://Textures/under_bone.png" id="5_22hjy"]
+[ext_resource type="Texture2D" uid="uid://u0gbvr75h3m4" path="res://Textures/bone_stump.png" id="5_rgq82"]
+[ext_resource type="Texture2D" uid="uid://bt6vcagauuej" path="res://Textures/bar_finger.png" id="7_w2d2y"]
+[ext_resource type="Texture2D" uid="uid://ch0wel317v7c4" path="res://Textures/gore_tracker.png" id="8_wsmo3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hkwan"]
 
@@ -14,6 +20,7 @@ viewport_path = NodePath("SubViewport")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_6sy4w")
 SENSITIVITY = 0.05
+goreTrackMultiplier = 2.75
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Player"]]
 shape = SubResource("CapsuleShape3D_hkwan")
@@ -50,6 +57,8 @@ layers = 2
 
 [node name="gun" parent="SubViewport/UICamera3D/Player_1st/Left" index="0" instance=ExtResource("3_nvcqj")]
 transform = Transform3D(-0.675591, 0, 0.737277, 0, 0.999999, 0, -0.737277, 0, -0.675591, -6.70585, 1.11024, 0.592052)
+bulletDamage = 10
+bulletDistance = 100.0
 
 [node name="Right" parent="SubViewport/UICamera3D/Player_1st" index="1"]
 transform = Transform3D(0.0712032, 0, -0.0777046, 0, 0.105394, 0, 0.0777046, 0, 0.0712032, 0, 0, 0)
@@ -63,12 +72,61 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="UserInterface"]
+[node name="Hands" type="TextureRect" parent="UserInterface"]
 layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = -8.0
 texture = SubResource("ViewportTexture_tnowq")
 expand_mode = 2
+
+[node name="Crosshair" type="TextureRect" parent="UserInterface"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 560.0
+offset_top = 304.0
+offset_right = -560.0
+offset_bottom = -312.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_uvfk1")
+
+[node name="HealthBar" type="Control" parent="UserInterface"]
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="EndStump" type="TextureRect" parent="UserInterface/HealthBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_rgq82")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UserInterface/HealthBar"]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 328.0
+offset_bottom = 40.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_22hjy")
+texture_progress = ExtResource("7_w2d2y")
+
+[node name="GoreTracker" type="TextureRect" parent="UserInterface/HealthBar"]
+layout_mode = 0
+offset_left = 312.0
+offset_right = 328.0
+offset_bottom = 40.0
+scale = Vector2(1.44, 1)
+texture = ExtResource("8_wsmo3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_energy = 1.468

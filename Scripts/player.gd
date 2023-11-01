@@ -13,7 +13,9 @@ var gun: Node3D
 
 var maxHealth: int = 100;
 var health: int = 100;
-
+var healthBar: TextureProgressBar;
+var goreTracker: TextureRect;
+@export var goreTrackMultiplier: float;
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -26,7 +28,10 @@ func _ready():
 	initRot = rotation;
 	uiCam = $SubViewport/UICamera3D;
 	
-	gun.setCam(uiCam)
+	healthBar = $UserInterface/HealthBar/TextureProgressBar;
+	goreTracker = $UserInterface/HealthBar/GoreTracker;
+	healthBar.max_value = maxHealth;
+	goreTracker.visible = false;
 
 func _process(_delta):
 	uiCam.global_position = cam.global_position;
@@ -65,7 +70,7 @@ func _input(event):
 		
 		
 func die():
-	pass
+	print("M⍉RTIS")
 
 func hurt(amount: int = 0):
 	health -= amount;
@@ -75,7 +80,6 @@ func hurt(amount: int = 0):
 	if health > maxHealth:
 		health = maxHealth
 		
-func heal(amount: int = 0):
-	health += amount
-	if health > maxHealth:
-		health = maxHealth
+	healthBar.value = health;
+	goreTracker.visible = health != maxHealth;
+	goreTracker.position.x = 40 + (float(health) / float(maxHealth)) * 272;
